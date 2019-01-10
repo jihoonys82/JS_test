@@ -13,6 +13,6 @@ If you are using git in your desktop environment, please clone this page
 ```
 $ git clone https://github.com/jihoonys82/JS_test.git
 ```
-or download source code 
+or download source code.
 Please open index.html in your web browser(IE, Chrome, Firefox, Safari, etc.).
 
