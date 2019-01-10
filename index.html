@@ -50,46 +50,51 @@
 
 <script>
 $(document).ready(function(){
+    // event handling - keyup at textarea#inputString
     $("#inputString").on("keyup", function(){
 
-        var $inputString = $(this).val();
-        var splited = $inputString.split(/[^0-9]/g);
+        // split input value via regular expression 
+        var inputString = $(this).val();
+        var splited = inputString.split(/[^0-9]/g);
+
+        //initialize variable
         var leftSum = 0;
         var rightSum = 0;
         var total = 0; 
         var mingap = -1;
         var leftResult = 0;
         var rightResult = 0;
-        console.log("splited: " + splited);
+
+        //calculate total sum 
         splited.forEach(function(e){
             var element = parseInt(e);
             if(!isNaN(element)){
                 total += element;
             }
         });
+
+        //search minimun gap 
         splited.forEach(function(e){
             var element = parseInt(e);
             if(!isNaN(element)){
                 leftSum += parseInt(element);
                 rightSum = total-leftSum;
                 var gap = Math.abs(leftSum-rightSum);
-                console.log("leftsum: "+leftSum+" rightSum: " +rightSum + " gap: " + gap);
                 if( mingap == -1 || mingap>gap ) {
                     mingap = gap;
                     leftResult = leftSum;
                     rightResult = rightSum;
                 }
-
             }
         });
 
+        // print results in console and web page. 
+        console.log("leftResult: "+leftResult+" rightResult: " +rightResult + " mingap: " + mingap);
         $("#leftResult").text(leftResult);
         $("#rightResult").text(rightResult);
         $("#gap").text(mingap);
     });
-
 });
-
 </script>
 
 </body>
