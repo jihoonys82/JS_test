@@ -1,5 +1,5 @@
 # JS test
-this repository for coding test to apply Project:Recapure as Entry Level Full-stack Developer. 
+this repository for coding test to apply Project:Recapture as Entry Level Full-stack Developer. 
 
 ## Requirements
 Please create a single HTML page with minimum of JS required to do following:
