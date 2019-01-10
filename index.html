@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project Recapture Test - Jihoon Jeong</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <style>
+        * {
+            background-color: #EEEEEE;
+        }
+        .container {
+            margin : 0 auto; 
+            width: 500px; 
+        }
+        .inputArea {
+            width: 90%;
+            margin: 5px auto;
+            padding: 5px 0px;;
+        }
+        #inputString {
+            width: 100%;
+            height: 3em;
+            
+        }
+        .resultArea {
+            width: 90%;
+            min-height: 100px;
+            border: 1px solid #333333;
+            padding: 5px;
+            margin: 5px auto;
+            
+        }
+    </style>
+</head>
+<body>
+    
+<div class="container">
+    <div class="inputArea">
+        <textarea id="inputString"></textarea>
+    </div>
+
+    <div class="resultArea">
+        Left Sum : <span id="leftResult"></span><br>
+        Right Sum : <span id="rightResult"></span><br>
+        Gap : <span id="gap"></span>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#inputString").on("keyup", function(){
+
+        var $inputString = $(this).val();
+        var splited = $inputString.split(/[^0-9]/g);
+        var leftSum = 0;
+        var rightSum = 0;
+        var total = 0; 
+        var mingap = -1;
+        var leftResult = 0;
+        var rightResult = 0;
+        console.log("splited: " + splited);
+        splited.forEach(function(e){
+            var element = parseInt(e);
+            if(!isNaN(element)){
+                total += element;
+            }
+        });
+        splited.forEach(function(e){
+            var element = parseInt(e);
+            if(!isNaN(element)){
+                leftSum += parseInt(element);
+                rightSum = total-leftSum;
+                var gap = Math.abs(leftSum-rightSum);
+                console.log("leftsum: "+leftSum+" rightSum: " +rightSum + " gap: " + gap);
+                if( mingap == -1 || mingap>gap ) {
+                    mingap = gap;
+                    leftResult = leftSum;
+                    rightResult = rightSum;
+                }
+
+            }
+        });
+
+        $("#leftResult").text(leftResult);
+        $("#rightResult").text(rightResult);
+        $("#gap").text(mingap);
+    });
+
+});
+
+</script>
+
+</body>
+</html>
