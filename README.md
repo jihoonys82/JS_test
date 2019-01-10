@@ -8,3 +8,12 @@ Please create a single HTML page with minimum of JS required to do following:
 * Feel free to use any third-party JavaScript plugins.
 * Once complete send link or files to ********@projectrecapture.com
 
+## Usage
+If you are using git in your desktop environment, please clone this page
+
+```$ git clone https://github.com/jihoonys82/JS_test.git```
+
+or download source code 
+
+Please open index.html in your web browser(IE, Chrome, Firefox, Safari, etc.).
+
