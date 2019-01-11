@@ -57,11 +57,11 @@ $(document).ready(function(){
 
         // split input value via regular expression 
         var inputString = $(this).val();
-        var splited = inputString.split(/[^0-9]/g);
+        var splited = inputString.split(/[^0-9]+/g);
 
         // sort splited array
         splited.sort(function(a,b){return a-b});
-        
+       
         // initialize variable
         var leftSum = 0;
         var leftArr = new Array();
