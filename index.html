@@ -43,7 +43,9 @@
 
     <div class="resultArea">
         Left Sum : <span id="leftResult"></span><br>
+        Left Arr : <span id="leftArray"></span><br>
         Right Sum : <span id="rightResult"></span><br>
+        Right Array : <span id="rightArray"></span><br>
         Gap : <span id="gap"></span>
     </div>
 </div>
@@ -57,42 +59,39 @@ $(document).ready(function(){
         var inputString = $(this).val();
         var splited = inputString.split(/[^0-9]/g);
 
-        //initialize variable
+        // sort splited array
+        splited.sort(function(a,b){return a-b});
+        
+        // initialize variable
         var leftSum = 0;
+        var leftArr = new Array();
         var rightSum = 0;
-        var total = 0; 
-        var mingap = -1;
-        var leftResult = 0;
-        var rightResult = 0;
+        var rightArr = new Array();
 
-        //calculate total sum 
-        splited.forEach(function(e){
-            var element = parseInt(e);
-            if(!isNaN(element)){
-                total += element;
+        //distribute array elements
+        for(var i=splited.length-1;i>=0;i--) {
+            element = parseInt(splited[i]);
+            if(isNaN(element))
+                continue;
+
+            if(leftSum<=rightSum) {
+                leftSum += element;
+                leftArr.push(element);
+            } else {
+                rightSum += element;
+                rightArr.push(element);
             }
-        });
 
-        //search minimun gap 
-        splited.forEach(function(e){
-            var element = parseInt(e);
-            if(!isNaN(element)){
-                leftSum += parseInt(element);
-                rightSum = total-leftSum;
-                var gap = Math.abs(leftSum-rightSum);
-                if( mingap == -1 || mingap>gap ) {
-                    mingap = gap;
-                    leftResult = leftSum;
-                    rightResult = rightSum;
-                }
-            }
-        });
+            //codes for test 
+            //console.log("leftSum:"+leftSum+" rightSum:"+rightSum + " gap:"+Math.abs(leftSum-rightSum));
+        }
 
-        // print results in console and web page. 
-        console.log("leftResult: "+leftResult+" rightResult: " +rightResult + " mingap: " + mingap);
-        $("#leftResult").text(leftResult);
-        $("#rightResult").text(rightResult);
-        $("#gap").text(mingap);
+        // print results in web page. 
+        $("#leftResult").text(leftSum);
+        $("#leftArray").text(leftArr.toString());
+        $("#rightResult").text(rightSum);
+        $("#rightArray").text(rightArr.toString());
+        $("#gap").text(Math.abs(leftSum-rightSum));
     });
 });
 </script>
